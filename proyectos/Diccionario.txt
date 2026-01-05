@@ -1,0 +1,84 @@
+Tabla: Cliente
+Descripcion: almacena la informacion de los clientes que reservan habitaciones o actividades.
+Columnas:
+-cedula (INT): clave primaria, es la identificacion unica de cada cliente.
+-nombre (VARCHAR (100)): nombre del cliente.
+-apellido_1 (VARCHAR (100)): primer apellido del cliente 
+-apellido_2 (VARCHAR(100)): Segundo apellido del cliente.
+-correo (VARCHAR(150)): Correo electrónico del cliente.
+-tipo_identificacion (VARCHAR(50)): Tipo de identificación del cliente.
+-pais_residencia (VARCHAR(100)): País de residencia del cliente.
+-direccion (VARCHAR(200)): Dirección física del cliente.
+-fecha_nacimiento (DATE): Fecha de nacimiento del cliente.
+-telefono (VARCHAR(20)): Número telefónico del cliente.
+Restricciones:
+-PK_Cliente: Clave primaria sobre el atributo cedula.
+-NOT NULL en: cedula, nombre, apellido_1.
+
+Tabla: Hotel
+Descripción: almacena la información de los hoteles registrados en el sistema.
+Columnas:
+-cedula (VARCHAR(20)): Clave primaria. Identificación única del hotel.
+-nombre (VARCHAR(150)): Nombre del hotel.
+-tipo (VARCHAR(50)): Tipo o categoría del hotel.
+-correo (VARCHAR(150)): Correo electrónico del hotel.
+-url (VARCHAR(200)): Página web oficial del hotel.
+-redes (VARCHAR(200)): Redes sociales del hotel.
+-servicios (VARCHAR(300)): Servicios ofrecidos por el hotel.
+-direccion (VARCHAR(200)): Dirección física del hotel.
+-gps (VARCHAR(100)): Coordenadas GPS del hotel.
+-telefonos (VARCHAR(50)): Teléfonos de contacto del hotel.
+Restricciones:
+-PK_Hotel: Clave primaria sobre el atributo cedula.
+-NOT NULL en: cedula, nombre.
+
+Tabla: Habitacion
+Descripción: almacena la información de las habitaciones disponibles en los hoteles y su asignación a clientes.
+Columnas:
+-numero (INT): Clave primaria. Número identificador de la habitación.
+-tipo (VARCHAR(50)): Tipo de habitación.
+-estado (VARCHAR(50)): Estado de la habitación (disponible, ocupada, mantenimiento).
+-cedula_hotel (VARCHAR(20)): Clave foránea que identifica el hotel al que pertenece la habitación.
+-cedula_cliente (VARCHAR(20)): Clave foránea que identifica al cliente asignado a la habitación.
+Restricciones:
+-PK_Habitacion: Clave primaria sobre el atributo numero.
+-FK_Habitacion_Hotel:
+-cedula_hotel referencia a Hotel(cedula).
+-FK_Habitacion_Cliente:
+-cedula_cliente referencia a Cliente(cedula).
+-NOT NULL en: numero.
+
+Tabla: TipoHabitacion
+Descripción: define los tipos de habitaciones, sus precios y características.
+Columnas:
+-nombre (VARCHAR(100)): Nombre del tipo de habitación.
+-descripcion (VARCHAR(300)): Descripción del tipo de habitación.
+-precio (DECIMAL(10,2)): Precio por noche.
+-fotos (VARCHAR(300)): Referencias a fotos.
+-tipo_cama (VARCHAR(50)): Tipo de cama.
+-comodidades (VARCHAR(300)): Comodidades incluidas.
+-numero_habitacion (INT): Habitación asociada.
+Restricciones:
+-PK_TipoHabitacion: Clave primaria sobre el atributo nombre.
+-FK_TipoHabitacion_Habitacion:
+-numero_habitacion referencia a Habitacion(numero).
+-NOT NULL en: nombre.
+
+Tabla: Actividades
+Descripción: almacena la información de las actividades ofrecidas y su relación con clientes.
+Columnas:
+-cedula (VARCHAR(20)): Identificación única de la actividad.
+-nombre (VARCHAR(150)): Nombre de la actividad.
+-contacto (VARCHAR(100)): Persona de contacto.
+-correo (VARCHAR(150)): Correo electrónico.
+-tipo_actividad (VARCHAR(100)): Tipo de actividad.
+-descripcion (VARCHAR(300)): Descripción detallada.
+-direccion (VARCHAR(200)): Ubicación de la actividad.
+-precio (DECIMAL(10,2)): Precio de la actividad.
+-telefono (VARCHAR(20)): Teléfono de contacto.
+-cedula_cliente (VARCHAR(20)): Cliente asociado a la actividad.
+Restricciones:
+-PK_Actividades: Clave primaria sobre el atributo cedula.
+-FK_Actividades_Cliente:
+-cedula_cliente referencia a Cliente(cedula).
+-NOT NULL en: cedula, nombre.
