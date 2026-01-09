@@ -4,5 +4,6 @@
 Diego Vega Mora - 2020043916
 
 ### Estado del proyecto:
+Buena
 ### Enlace del video:
 Recordar que el video debe ser público para ser visto por el profesor
